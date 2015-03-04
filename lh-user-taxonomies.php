@@ -5,12 +5,15 @@ Plugin URI: http://lhero.org/plugins/lh-user-taxonomies/
 Author: Peter Shaw
 Author URI: http://shawfactor.com/
 Description: Simplify the process of adding support for custom taxonomies for Users. Just use `register_taxonomy` and everything else is taken care of. With added functions by Peter Shaw.
-Version:	1.0
+Version:	1.1
 
 == Changelog ==
 
 = 1.0 =
 *Initial Release
+
+= 1.1 =
+*Added icon
 
 License:
 Released under the GPL license
