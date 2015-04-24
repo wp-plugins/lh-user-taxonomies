@@ -3,7 +3,7 @@ Contributors: shawfactor
 Donate link: http://lhero.org/plugins/lh-user-taxonomies/
 Tags: user, users, taxonomy, custom taxonomy, register_taxonomy, developer
 Requires at least: 3.0
-Tested up to: 4.1
+Tested up to: 4.2
 Stable tag: trunk
 
 Simplify the process of adding support for custom taxonomies for Users. Just use `register_taxonomy` and everything else is taken care of.
