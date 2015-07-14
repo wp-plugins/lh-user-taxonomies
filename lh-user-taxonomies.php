@@ -5,7 +5,7 @@ Plugin URI: http://lhero.org/plugins/lh-user-taxonomies/
 Author: Peter Shaw
 Author URI: http://shawfactor.com/
 Description: Simplify the process of adding support for custom taxonomies for Users. Just use `register_taxonomy` and everything else is taken care of. With added functions by Peter Shaw.
-Version:	1.1
+Version:	1.2
 
 == Changelog ==
 
@@ -14,6 +14,9 @@ Version:	1.1
 
 = 1.1 =
 *Added icon
+
+= 1.2 =
+*Added various pathches, props nikolaynesov
 
 License:
 Released under the GPL license
@@ -284,28 +287,27 @@ echo "checked=\"checked\"";
 	 * 
 	 * @param Integer $user_id	- The ID of the user to update
 	 */
-	public function save_profile($user_id) {
+public function save_profile($user_id) {
+
 		foreach(self::$taxonomies as $key=>$taxonomy) {
 			// Check the current user can edit this user and assign terms for this taxonomy
 			if(!current_user_can('edit_user', $user_id) && current_user_can($taxonomy->cap->assign_terms)) return false;
 
-if (is_array($_POST[$key])){
+				if (isset($_POST[$key])) {
+					if (is_array($_POST[$key])){
 
-$term = $_POST[$key];
+						$term = $_POST[$key];
 
-wp_set_object_terms($user_id, $term, $key, false);
+						wp_set_object_terms($user_id, $term, $key, false);
 
+					} else {
 
-} else {
+						$term	= esc_attr($_POST[$key]);
+						wp_set_object_terms($user_id, array($term), $key, false);
 
-$term	= esc_attr($_POST[$key]);
-wp_set_object_terms($user_id, array($term), $key, false);
-
-
-}
-			
-			// Save the data
-
+					}
+				}
+				// Save the data
 
 			clean_object_term_cache($user_id, $key);
 		}
@@ -418,7 +420,7 @@ $new_ids = get_objects_in_term($term->term_id, $taxonomy->name);
 
 
 
-if (!$ids){  
+if (!isset($ids) || empty($ids)){  
 
 $ids = $new_ids;  
 

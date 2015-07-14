@@ -59,10 +59,8 @@ This is heavily inspired by previous work by [Justin Tadlock](http://justintadlo
 == Installation ==
 
 1. Upload the `lh-user-taxonomies` folder to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Use `register_taxonomy` as shown in the description
-4. Save the permalinks(under settings->permalinks).
-5. You may need to create a template e.g. taxonomy-profession.php to list your users if the taxonomy is public.
+1. Activate the plugin through the 'Plugins' menu in WordPress
+1. Use `register_taxonomy` as shown in the description
 
 
 == Changelog ==
