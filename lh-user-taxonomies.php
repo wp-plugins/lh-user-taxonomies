@@ -5,7 +5,7 @@ Plugin URI: http://lhero.org/plugins/lh-user-taxonomies/
 Author: Peter Shaw
 Author URI: http://shawfactor.com/
 Description: Simplify the process of adding support for custom taxonomies for Users. Just use `register_taxonomy` and everything else is taken care of. With added functions by Peter Shaw.
-Version:	1.3
+Version:	1.3.1
 
 == Changelog ==
 
@@ -20,6 +20,10 @@ Version:	1.3
 
 = 1.3 =
 *Better readme.txt
+
+= 1.3.1 =
+*Minor fix, thanks lindesvard
+
 
 License:
 Released under the GPL license
@@ -438,7 +442,7 @@ $ids = array_intersect($ids, $new_ids);
 
 }
 
-if ($ids){  
+if ( isset( $ids ) ){  
 
 $ids = implode(',', wp_parse_id_list( $ids ) );
 
