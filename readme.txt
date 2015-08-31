@@ -82,3 +82,7 @@ All tickets for the project are being tracked on [GitHub][].
 **1.3 July 17, 2015**  
 * Documentation links
 
+
+**1.41 August 31, 2015**  
+* Fix for saving taxonomies on profile when you need to remove term - thanks Greumb
+

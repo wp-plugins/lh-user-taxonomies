@@ -5,7 +5,7 @@ Plugin URI: http://lhero.org/plugins/lh-user-taxonomies/
 Author: Peter Shaw
 Author URI: http://shawfactor.com/
 Description: Simplify the process of adding support for custom taxonomies for Users. Just use `register_taxonomy` and everything else is taken care of. With added functions by Peter Shaw.
-Version:	1.4
+Version:	1.41
 == Changelog ==
 = 1.0 =
 *Initial Release
@@ -19,6 +19,9 @@ Version:	1.4
 *Minor fix, thanks lindesvard
 = 1.4 =
 *Minor fix, and tree logic for hierarchical taxonomies - thanks again Carl-Gerhard Lindesvard
+= 1.41 =
+*Fix for saving taxonomies on profile when you ned to remove term - thanks Greumb
+
 License:
 Released under the GPL license
 http://www.gnu.org/copyleft/gpl.html
@@ -246,8 +249,8 @@ class LH_User_Taxonomies_plugin {
 public function save_profile($user_id) {
 		foreach(self::$taxonomies as $key=>$taxonomy) {
 			// Check the current user can edit this user and assign terms for this taxonomy
-			if(!current_user_can('edit_user', $user_id) && current_user_can($taxonomy->cap->assign_terms)) return false;
-				if (isset($_POST[$key])) {
+			if(current_user_can('edit_user', $user_id) && current_user_can($taxonomy->cap->assign_terms)){
+
 					if (is_array($_POST[$key])){
 						$term = $_POST[$key];
 						wp_set_object_terms($user_id, $term, $key, false);
@@ -255,9 +258,10 @@ public function save_profile($user_id) {
 						$term	= esc_attr($_POST[$key]);
 						wp_set_object_terms($user_id, array($term), $key, false);
 					}
-				}
 				// Save the data
 			clean_object_term_cache($user_id, $key);
+
+}
 		}
 	}
 	
